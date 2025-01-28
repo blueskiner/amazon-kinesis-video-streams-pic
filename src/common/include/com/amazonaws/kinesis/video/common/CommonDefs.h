@@ -327,15 +327,29 @@ typedef UINT64 ULONG_PTR, *PULONG_PTR;
 // Define pointer width size types
 //
 #ifndef _SIZE_T_DEFINED_IN_COMMON
+
+#if defined(size_t)
+typedef size_t SIZE_T, *PSIZE_T;
+#else // defined(size_t)
 #if defined(__MINGW32__)
 typedef ULONG_PTR SIZE_T, *PSIZE_T;
-typedef LONG_PTR SSIZE_T, *PSSIZE_T;
-#elif !(defined _WIN32 || defined _WIN64)
+#elif !(defined _WIN32 || defined _WIN64) // defined(__MINGW32__)
 typedef UINT_PTR SIZE_T, *PSIZE_T;
+#endif // defined(__MINGW32__)
+#endif // defined(size_t)
+
+#if defined(ssize_t)
+typedef ssize_t SSIZE_T, *PSSIZE_T;
+#else // defined(ssize_t)
+#if defined(__MINGW32__)
+typedef LONG_PTR SSIZE_T, *PSSIZE_T;
+#elif !(defined _WIN32 || defined _WIN64) // defined(__MINGW32__)
 typedef INT_PTR SSIZE_T, *PSSIZE_T;
-#endif
+#endif // defined(__MINGW32__)
+#endif // defined(ssize_t)
+
 #define _SIZE_T_DEFINED_IN_COMMON
-#endif
+#endif // ifndef _SIZE_T_DEFINED_IN_COMMON
 
 //
 // Stringification macro
