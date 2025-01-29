@@ -7,6 +7,13 @@ TEST(CommonDefsTest, SizeTMatches)
     EXPECT_EQ(SIZEOF(size_t), SIZEOF(SIZE_T));
 }
 
+TEST(CommonDefsTest, UINT32Matches)
+{
+    EXPECT_EQ(SIZEOF(UINT32), 4);
+    // Testing a failure case...
+    EXPECT_EQ(SIZEOF(UINT32) + 1, 4);
+}
+
 TEST(CommonDefsTest, GetEnvWorks)
 {
     EXPECT_NE(nullptr, GETENV("PATH")) << "PATH environment variable is unexpectedly unset, or GETENV doesn't work";
