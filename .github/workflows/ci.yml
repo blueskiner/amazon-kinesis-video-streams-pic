@@ -24,7 +24,7 @@ jobs:
           curl -L \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-             -d '{"ref":"develop",
+             -d '{"ref":"cross-repo-ci",
                   "inputs":
                     {"pic_tag":"${{ github.event.pull_request.head.ref }}"}
                 }' \
