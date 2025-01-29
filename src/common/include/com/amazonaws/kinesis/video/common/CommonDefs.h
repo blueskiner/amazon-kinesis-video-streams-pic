@@ -335,8 +335,8 @@ typedef size_t SIZE_T, *PSIZE_T;
 typedef ULONG_PTR SIZE_T, *PSIZE_T;
 #elif !(defined _WIN32 || defined _WIN64) // defined(__MINGW32__)
 typedef UINT_PTR SIZE_T, *PSIZE_T;
-#endif // defined(__MINGW32__)
-#endif // defined(size_t)
+#endif                                    // defined(__MINGW32__)
+#endif                                    // defined(size_t)
 
 #if defined(ssize_t)
 typedef ssize_t SSIZE_T, *PSSIZE_T;
@@ -345,8 +345,8 @@ typedef ssize_t SSIZE_T, *PSSIZE_T;
 typedef LONG_PTR SSIZE_T, *PSSIZE_T;
 #elif !(defined _WIN32 || defined _WIN64) // defined(__MINGW32__)
 typedef INT_PTR SSIZE_T, *PSSIZE_T;
-#endif // defined(__MINGW32__)
-#endif // defined(ssize_t)
+#endif                                    // defined(__MINGW32__)
+#endif                                    // defined(ssize_t)
 
 #define _SIZE_T_DEFINED_IN_COMMON
 #endif // ifndef _SIZE_T_DEFINED_IN_COMMON
