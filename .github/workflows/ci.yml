@@ -28,7 +28,7 @@ jobs:
                   "inputs":
                     {"pic_tag":"${{ github.event.pull_request.head.ref }}"}
                 }' \
-            "https://api.github.com/repos/awslabs/amazon-kinesis-video-streams-producer-c/actions/workflows/ci.yml/dispatches \"
+            "https://api.github.com/repos/awslabs/amazon-kinesis-video-streams-producer-c/actions/workflows/ci.yml/dispatches" \
   
   mac-tests:
     strategy:
