@@ -10,8 +10,6 @@ TEST(CommonDefsTest, SizeTMatches)
 TEST(CommonDefsTest, UINT32Matches)
 {
     EXPECT_EQ(SIZEOF(UINT32), 4);
-    // Testing a failure case...
-    EXPECT_EQ(SIZEOF(UINT32) + 1, 4);
 }
 
 TEST(CommonDefsTest, GetEnvWorks)
