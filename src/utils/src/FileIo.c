@@ -18,6 +18,7 @@ STATUS readFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, PUINT64 pSize)
 
     CHK(filePath != NULL && pSize != NULL, STATUS_NULL_ARG);
 
+    DLOGD("Opening file: %s", filePath);
     fp = FOPEN(filePath, binMode ? "rb" : "r");
 
     CHK(fp != NULL, STATUS_OPEN_FILE_FAILED);
@@ -82,6 +83,7 @@ STATUS readFileSegment(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offse
 
     CHK(filePath != NULL && pBuffer != NULL && readSize != 0, STATUS_NULL_ARG);
 
+    DLOGD("Opening file: %s", filePath);
     fp = FOPEN(filePath, binMode ? "rb" : "r");
 
     CHK(fp != NULL, STATUS_OPEN_FILE_FAILED);
@@ -138,6 +140,7 @@ STATUS writeFile(PCHAR filePath, BOOL binMode, BOOL append, PBYTE pBuffer, UINT6
 
     CHK(filePath != NULL && pBuffer != NULL, STATUS_NULL_ARG);
 
+    DLOGD("Opening file: %s", filePath);
     fp = FOPEN(filePath, binMode ? (append ? "ab" : "wb") : (append ? "a" : "w"));
 
     CHK(fp != NULL, STATUS_OPEN_FILE_FAILED);
@@ -174,6 +177,7 @@ STATUS updateFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offset, UI
 
     CHK(filePath != NULL && pBuffer != NULL, STATUS_NULL_ARG);
 
+    DLOGD("Opening file: %s", filePath);
     fp = FOPEN(filePath, binMode ? "rb+" : "r+");
 
     CHK(fp != NULL, STATUS_OPEN_FILE_FAILED);
@@ -322,6 +326,7 @@ STATUS createFile(PCHAR filePath, UINT64 size)
 
     CHK(filePath != NULL, STATUS_NULL_ARG);
 
+    DLOGD("Creating file: %s", filePath);
     fp = FOPEN(filePath, "w+b");
     CHK(fp != NULL, STATUS_OPEN_FILE_FAILED);
 
