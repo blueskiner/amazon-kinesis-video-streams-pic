@@ -12,6 +12,7 @@
  */
 STATUS readFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, PUINT64 pSize)
 {
+    ENTERS();
     UINT64 fileLen;
     STATUS retStatus = STATUS_SUCCESS;
     FILE* fp = NULL;
@@ -53,12 +54,14 @@ STATUS readFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, PUINT64 pSize)
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (fp != NULL) {
         FCLOSE(fp);
         fp = NULL;
     }
 
+    LEAVES();
     return retStatus;
 }
 
@@ -76,6 +79,7 @@ CleanUp:
  */
 STATUS readFileSegment(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offset, UINT64 readSize)
 {
+    ENTERS();
     UINT64 fileLen;
     STATUS retStatus = STATUS_SUCCESS;
     FILE* fp = NULL;
@@ -114,12 +118,14 @@ STATUS readFileSegment(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offse
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (fp != NULL) {
         FCLOSE(fp);
         fp = NULL;
     }
 
+    LEAVES();
     return retStatus;
 }
 
@@ -135,6 +141,7 @@ CleanUp:
  */
 STATUS writeFile(PCHAR filePath, BOOL binMode, BOOL append, PBYTE pBuffer, UINT64 size)
 {
+    ENTERS();
     STATUS retStatus = STATUS_SUCCESS;
     FILE* fp = NULL;
 
@@ -149,12 +156,14 @@ STATUS writeFile(PCHAR filePath, BOOL binMode, BOOL append, PBYTE pBuffer, UINT6
     CHK(FWRITE(pBuffer, (SIZE_T) size, 1, fp) == 1, STATUS_WRITE_TO_FILE_FAILED);
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (fp != NULL) {
         FCLOSE(fp);
         fp = NULL;
     }
 
+    LEAVES();
     return retStatus;
 }
 
@@ -170,6 +179,7 @@ CleanUp:
  */
 STATUS updateFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offset, UINT64 size)
 {
+    ENTERS();
     STATUS retStatus = STATUS_SUCCESS;
     FILE* fp = NULL;
     UINT32 i;
@@ -189,12 +199,14 @@ STATUS updateFile(PCHAR filePath, BOOL binMode, PBYTE pBuffer, UINT64 offset, UI
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (fp != NULL) {
         FCLOSE(fp);
         fp = NULL;
     }
 
+    LEAVES();
     return retStatus;
 }
 
@@ -210,12 +222,15 @@ CleanUp:
  */
 STATUS getFileLength(PCHAR filePath, PUINT64 pLength)
 {
+    ENTERS();
     STATUS retStatus = STATUS_SUCCESS;
 
     CHK_STATUS(readFile(filePath, TRUE, NULL, pLength));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
+    LEAVES();
     return retStatus;
 }
 
@@ -231,6 +246,7 @@ CleanUp:
  */
 STATUS setFileLength(PCHAR filePath, UINT64 length)
 {
+    ENTERS();
     STATUS retStatus = STATUS_SUCCESS;
     INT32 retVal, errCode, fileDesc;
 
@@ -288,7 +304,9 @@ STATUS setFileLength(PCHAR filePath, UINT64 length)
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
+    LEAVES();
     return retStatus;
 }
 
@@ -301,7 +319,9 @@ CleanUp:
  */
 STATUS fileExists(PCHAR filePath, PBOOL pExists)
 {
+    ENTERS();
     if (filePath == NULL || pExists == NULL) {
+        LEAVES();
         return STATUS_NULL_ARG;
     }
 
@@ -309,6 +329,7 @@ STATUS fileExists(PCHAR filePath, PBOOL pExists)
     INT32 result = FSTAT(filePath, &st);
     *pExists = (result == 0);
 
+    LEAVES();
     return STATUS_SUCCESS;
 }
 
@@ -321,6 +342,7 @@ STATUS fileExists(PCHAR filePath, PBOOL pExists)
  */
 STATUS createFile(PCHAR filePath, UINT64 size)
 {
+    ENTERS();
     STATUS retStatus = STATUS_SUCCESS;
     FILE* fp = NULL;
 
@@ -336,11 +358,13 @@ STATUS createFile(PCHAR filePath, UINT64 size)
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (fp != NULL) {
         FCLOSE(fp);
         fp = NULL;
     }
 
+    LEAVES();
     return retStatus;
 }
