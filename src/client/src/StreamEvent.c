@@ -289,6 +289,7 @@ STATUS describeStreamResult(PKinesisVideoStream pKinesisVideoStream, SERVICE_CAL
     CHK_STATUS(iterateStreamStateMachine(pKinesisVideoStream));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -350,6 +351,7 @@ STATUS createStreamResult(PKinesisVideoStream pKinesisVideoStream, SERVICE_CALL_
     CHK_STATUS(iterateStreamStateMachine(pKinesisVideoStream));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -435,6 +437,7 @@ STATUS getStreamingTokenResult(PKinesisVideoStream pKinesisVideoStream, SERVICE_
     CHK_STATUS(iterateStreamStateMachine(pKinesisVideoStream));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -496,6 +499,7 @@ STATUS getStreamingEndpointResult(PKinesisVideoStream pKinesisVideoStream, SERVI
     CHK_STATUS(iterateStreamStateMachine(pKinesisVideoStream));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -571,6 +575,7 @@ STATUS putStreamResult(PKinesisVideoStream pKinesisVideoStream, SERVICE_CALL_RES
     CHK_STATUS(iterateStreamStateMachine(pKinesisVideoStream));
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (STATUS_FAILED(retStatus) && (NULL != pUploadHandleInfo)) {
         MEMFREE(pUploadHandleInfo);
@@ -641,6 +646,7 @@ STATUS tagStreamResult(PKinesisVideoStream pKinesisVideoStream, SERVICE_CALL_RES
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -787,6 +793,7 @@ STATUS streamTerminatedEvent(PKinesisVideoStream pKinesisVideoStream, UPLOAD_HAN
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     // Unlock the stream
     if (locked) {
@@ -914,6 +921,7 @@ STATUS streamFragmentAckEvent(PKinesisVideoStream pKinesisVideoStream, UPLOAD_HA
     CHK(inView, STATUS_ACK_TIMESTAMP_NOT_IN_VIEW_WINDOW);
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     if (pKinesisVideoClient != NULL) {
         // We will notify the fragment ACK received callback even if the processing failed
@@ -958,6 +966,7 @@ STATUS calculateCallLatency(PKinesisVideoStream pKinesisVideoStream, BOOL cplApi
     }
 
 CleanUp:
+    CHK_LOG_ERR(retStatus);
 
     return retStatus;
 }
