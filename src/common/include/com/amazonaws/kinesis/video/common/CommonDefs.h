@@ -139,6 +139,8 @@ typedef float FLOAT;
 
 #else
 
+#include <limits.h>
+
 typedef char CHAR;
 typedef short WCHAR;
 typedef unsigned char UINT8;
