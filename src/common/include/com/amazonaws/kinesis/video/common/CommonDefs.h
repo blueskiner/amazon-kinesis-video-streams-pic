@@ -145,8 +145,15 @@ typedef unsigned char UINT8;
 typedef char INT8;
 typedef unsigned short UINT16;
 typedef short INT16;
-typedef unsigned int UINT32;
-typedef int INT32;
+
+#if UINT_MAX == 0xffffffffU
+    typedef unsigned int UINT32;
+    typedef int INT32;
+#else
+    typedef unsigned long UINT32;
+    typedef long INT32;
+#endif
+
 typedef unsigned long long UINT64;
 typedef long long INT64;
 typedef double DOUBLE;
