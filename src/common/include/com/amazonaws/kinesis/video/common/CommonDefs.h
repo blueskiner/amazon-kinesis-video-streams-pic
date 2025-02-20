@@ -147,11 +147,11 @@ typedef unsigned short UINT16;
 typedef short INT16;
 
 #if UINT_MAX == 0xffffffffU
-    typedef unsigned int UINT32;
-    typedef int INT32;
+typedef unsigned int UINT32;
+typedef int INT32;
 #else
-    typedef unsigned long UINT32;
-    typedef long INT32;
+typedef unsigned long UINT32;
+typedef long INT32;
 #endif
 
 typedef unsigned long long UINT64;
